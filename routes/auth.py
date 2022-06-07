@@ -6,6 +6,15 @@ from functions_jwt import validate_token, write_token
 auth_routes = APIRouter()
 
 class User(BaseModel):
+    '''
+    User
+
+    User Model
+
+    Parameters:
+    - username: str = Required
+    - email: EmailStr = Required
+    '''
     username: str = Field(
         ...,
         title='username',
