@@ -41,8 +41,27 @@ def login(user: User = Body(...)):
     # return {'response':'success'}
 
 
-@auth_routes.post('/verify/token')
+@auth_routes.post(
+    path='/verify/token',
+    status_code=status.HTTP_202_ACCEPTED,
+    tags=['Auth'],
+    summary='Auth a token'
+)
 def verify_token(Authorization: str = Header(default=None)):
+    """
+    Verify Token
+
+    Path operation to verify users token
+    
+    Parameters:
+    - Header parameter:
+        - Authorization: str
+    
+    returns a JSON with body:
+    - username: str
+    - email: EmailStr
+    - exp: int
+    """
     token = Authorization.split(" ")[1]
     print(token)
     return validate_token(token, output=True)
