@@ -1,8 +1,9 @@
 from requests import get
 from fastapi import APIRouter
 from pydantic import BaseModel
+from middlewares.verify_token import VerifyTokenRoute
 
-users_github = APIRouter()
+users_github = APIRouter(route_class=VerifyTokenRoute)
 
 class UserGithub(BaseModel):
     country: str
